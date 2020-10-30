@@ -212,7 +212,7 @@
 
             // Get all inputs names and values and clean errors
             let datas = {};            
-            document.querySelectorAll('#' + form + ' input').forEach((input) => { 
+            document.querySelectorAll('#' + form + ' input').forEach(input => { 
                 let element = input.getAttribute('id');
                 document.querySelector('#' + element).classList.remove('is-invalid');
                 datas[element] = document.querySelector('#' + element).value;
