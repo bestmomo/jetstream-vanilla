@@ -199,13 +199,12 @@
         }
 
         // Headers
-        const headers = () => { 
-            return { 
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content, 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            };
-        }
+        const headers = 
+        { 
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content, 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        };
 
         // Form submission
         const formSubmission = async (e, form, url) => {
@@ -213,7 +212,7 @@
 
             // Get all inputs names and values and clean errors
             let datas = {};            
-            document.querySelectorAll('#' + form + ' input').forEach(function(input) { 
+            document.querySelectorAll('#' + form + ' input').forEach((input) => { 
                 let element = input.getAttribute('id');
                 document.querySelector('#' + element).classList.remove('is-invalid');
                 datas[element] = document.querySelector('#' + element).value;
@@ -222,7 +221,7 @@
             // Send request
             let response = await fetch(url, { 
                 method: 'PUT',
-                headers: headers(),
+                headers: headers,
                 body: JSON.stringify(datas)
             });
 
@@ -243,7 +242,7 @@
             // Send request          
             const response = await fetch('{{ url("user/confirm-password") }}', { 
                 method: 'POST',
-                headers: headers(),
+                headers: headers,
                 body: JSON.stringify({ 
                     password: document.querySelector('#confirmPassword').value, 
                 })
@@ -284,7 +283,7 @@
             // Send request
             const response = await fetch('{{ route("profile.enabletwofactors") }}', { 
               method: 'PUT',
-              headers: headers()
+              headers: headers
             });
 
             // Wait for response
@@ -308,7 +307,7 @@
             // Send request
             let response = await fetch('{{ route("profile.disabletwofactors") }}', { 
               method: 'PUT',
-              headers: headers()
+              headers: headers
             });
 
             // Wait for response
@@ -330,7 +329,7 @@
             // Send request
             const response = await fetch('{{ route("profile.generateNewRecoveryCodes") }}', { 
                 method: 'PUT',
-                headers: headers()
+                headers: headers
             });
 
             // Wait for response
@@ -374,7 +373,7 @@
             // Send request
             const response = await fetch('{{ route("profile.deleteAccount") }}', { 
                 method: 'PUT',
-                headers: headers(),
+                headers: headers,
                 body: JSON.stringify({
                     deletePassword: document.querySelector('#deletePassword').value
                 })
